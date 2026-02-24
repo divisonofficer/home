@@ -77,12 +77,12 @@ const mainBody = {
 
 const about = {
   show: true,
-  heading: "Education",
+  heading: "About Me",
   imageLink: require("../editable-stuff/jinnyeong.jpeg"),
   imageSize: 375,
   message:
-    "Ph.D. Integrated Program in Computer Science and Engineering, POSTECH (2024-Present); Qualified Examination (QE) Passed, 2025; B.S. in Software Engineering, Sungkyunkwan University (2018-2024); Creative Scholarship (Full Tuition), 2023; Military Service, Republic of Korea Air Force (2019-2021). Research Interests: Computational Imaging, Computational Cameras, RGB-NIR Fusion, Stereo Vision, HDR Imaging, and Vision for Robotics.",
-  resume: require("../editable-stuff/resume.pdf"),
+    "I am Jinnyeong Kim, a Ph.D. student in Computer Science and Engineering at POSTECH. My research focuses on computational imaging, RGB-NIR fusion, stereo vision, and HDR imaging for robot vision. I build practical camera systems and learning-based pipelines that stay reliable under challenging lighting conditions.",
+  resume: "resume.pdf",
 };
 
 // PROJECTS SECTION
@@ -192,6 +192,29 @@ const experiences = {
   ],
 };
 
+const education = {
+  show: true,
+  heading: "Education",
+  data: [
+    {
+      title:
+        "Ph.D. Integrated Program in Computer Science and Engineering, POSTECH",
+      subtitle: "2024-Present",
+      description: "Qualified Examination (QE) Passed, 2025",
+    },
+    {
+      title: "B.S. in Software Engineering, Sungkyunkwan University",
+      subtitle: "2018-2024",
+      description: "Creative Scholarship (Full Tuition), 2023",
+    },
+    {
+      title: "Military Service, Republic of Korea Air Force",
+      subtitle: "2019-2021",
+      description: "",
+    },
+  ],
+};
+
 const conferencePresentations = {
   show: true,
   heading: "Conference Presentations",
@@ -284,6 +307,7 @@ export {
   leadership,
   getInTouch,
   experiences,
+  education,
   achievements,
   publications,
   conferencePresentations,

@@ -9,6 +9,7 @@ import {
   skills,
   getInTouch,
   experiences,
+  education,
   achievements,
   publications,
   conferencePresentations,
@@ -54,6 +55,9 @@ const Home = React.forwardRef((props, ref) => {
           heading={publications.heading}
           publications={publications.data}
         />
+      )}
+      {education.show && (
+        <Achievements sectionId="education" achievements={education} />
       )}
       {conferencePresentations.show && (
         <Achievements achievements={conferencePresentations} />

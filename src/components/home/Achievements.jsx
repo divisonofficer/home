@@ -1,6 +1,7 @@
-const Achievements = ({ achievements }) => {
+const Achievements = ({ achievements, sectionId }) => {
   return (
     <div
+      id={sectionId}
       style={{
         display: "flex",
         flexDirection: "column",
