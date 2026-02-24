@@ -13,15 +13,18 @@ const Achievements = ({ achievements }) => {
       {achievements.data.map((data, index) => {
         return (
           <div
+            key={`${data.title}-${data.subtitle}-${index}`}
             style={{
               display: "flex",
               direction: "row",
               backgroundColor: index % 2 === 0 ? "#f8f9fa" : "white",
-              width: "50rem",
-              height: "3rem",
+              width: "100%",
+              maxWidth: "64rem",
+              minHeight: "3rem",
               alignItems: "center",
               paddingTop: "1rem",
               paddingLeft: "0.5rem",
+              paddingRight: "0.5rem",
             }}
           >
             <p

@@ -11,10 +11,12 @@ const publications = {
       title:
         "Pixel-aligned RGB-NIR Stereo Imaging and Dataset for Robot Vision",
       authors: ["Jinnyeong Kim", "Seung-Hwan Baek"],
+      thumbnail: require("../assets/thumb/thumb_rgb_nir.png"),
       pdf: "https://arxiv.org/abs/2411.18025",
-      year: "2024",
+      year: "2025",
       abstract:
         "Integrating RGB and NIR imaging provides complementary spectral information, enhancing robotic vision in challenging lighting conditions. However, existing datasets and imaging systems lack pixel-level alignment between RGB and NIR images, posing challenges for downstream tasks. In this paper, we develop a robotic vision system equipped with two pixel-aligned RGB-NIR stereo cameras and a LiDAR sensor mounted on a mobile robot. The system simultaneously captures RGB stereo images, NIR stereo images, and temporally synchronized LiDAR point cloud. Utilizing the mobility of the robot, we present a dataset containing continuous video frames with pixel-aligned RGB and NIR stereo pairs under diverse lighting conditions. We introduce two methods that utilize our pixel-aligned RGB-NIR images: an RGB-NIR image fusion method and a feature fusion method. The first approach enables existing RGB-pretrained vision models to directly utilize RGB-NIR information without fine-tuning. The second approach fine-tunes existing vision models to more effectively utilize RGB-NIR information. Experimental results demonstrate the effectiveness of using pixel-aligned RGB-NIR images across diverse lighting conditions.",
+      page: "https://divisonofficer.github.io/project_page_cvpr2025_5308",
       // github :
       // supple
       // video
@@ -31,7 +33,8 @@ const publications = {
         "Felix Heide",
         "Seung-Hwan Baek",
       ],
-      year: 2024,
+      year: 2025,
+      thumbnail: require("../assets/thumb/thumb_dual_exposure.png"),
       abstract:
         "Achieving robust stereo 3D imaging under diverse illumination conditions is an importat however challenging task, largely due to the limited dynamic ranges (DRs) of cameras, which are significantly smaller than real world DR. As a result, the accuracy of existing stereo depth estimation methods is often compromised by under- or over-exposed images. In this work, we introduce dual-exposure stereo for extended dynamic range 3D imaging. We develop automatic dual-exposure control method that adjusts the dual exposures, diverging them when the scene DR exceeds the camera DR, thereby providing information about broader DR. From the captured dual-exposure stereo images, we estimate depth by developing a motion-aware dual-exposure stereo depth network. To validate our proposed method, we develop a robot-vision system, collect real-world stereo video datasets, and generate a synthetic dataset. Our approach outperforms traditional exposure control and depth estimation methods.",
     },
@@ -44,19 +47,12 @@ const mainBody = {
   firstName: "Jinnyeong",
   middleName: "",
   lastName: "Kim",
-  message: " Dying to learn new things, and write clean code.",
+  message:
+    "Ph.D. student in Computational Imaging at POSTECH, building vision systems for robotics.",
   icons: [
     {
       image: "fa-github",
       url: "https://github.com/DivisonOfficer",
-    },
-    {
-      image: "fa-facebook",
-      url: "https://www.facebook.com/wlssud0701",
-    },
-    {
-      image: "fa-instagram",
-      url: "https://www.instagram.com/true_comfort_/",
     },
     {
       image: "fa-linkedin",
@@ -81,13 +77,12 @@ const mainBody = {
 
 const about = {
   show: true,
-  heading: "About Me",
+  heading: "Education",
   imageLink: require("../editable-stuff/jinnyeong.jpeg"),
   imageSize: 375,
   message:
-    "My name is Jinnyeong Kim. I am currently a master's student at POSTECH, South Korea, specializing in Computer Science within the Computer Graphics Lab. I graduated in 2024 from Sungkyunkwan University with a degree in Computer Engineering. My passion for contributing to the community drives me, and I aim to channel this enthusiasm into the realm of software engineering. In my spare time, I enjoy contributing to open source projects..",
-  //resume:
-  //  "https://docs.google.com/document/d/13_PWdhThMr6roxb-UFiJj4YAFOj8e_bv3Vx9UHQdyBQ/edit?usp=sharing",
+    "Ph.D. Integrated Program in Computer Science and Engineering, POSTECH (2024-Present); Qualified Examination (QE) Passed, 2025; B.S. in Software Engineering, Sungkyunkwan University (2018-2024); Creative Scholarship (Full Tuition), 2023; Military Service, Republic of Korea Air Force (2019-2021). Research Interests: Computational Imaging, Computational Cameras, RGB-NIR Fusion, Stereo Vision, HDR Imaging, and Vision for Robotics.",
+  resume: require("../editable-stuff/resume.pdf"),
 };
 
 // PROJECTS SECTION
@@ -110,7 +105,7 @@ const repos = {
 
 // Leadership SECTION
 const leadership = {
-  show: true,
+  show: false,
   heading: "Career Monuments",
   message:
     "In the tapestry of the digital epoch, a software engineer weaves with the threads of logic and creativity, fashioning solutions from the abstract. Each line of code is a silent stroke of a painter's brush, each function a verse in an unwritten epic of innovation. They are not mere architects of data, but sculptors of possibility, transforming the intangible into engines that power our very existence. In their craft, the mundane begets the miraculous, as they conjure the ethereal into the electronic. In the heart of each software engineer burns the fire of Prometheus, bringing not fire, but light to the world—a light that reveals new paths, new dreams, and the unyielding hope of what lies beyond the horizon of the known.",
@@ -142,7 +137,7 @@ const leadership = {
 
 // SKILLS SECTION
 const skills = {
-  show: true,
+  show: false,
   heading: "Skills",
   hardSkills: [
     { name: "Kotlin", value: 95 },
@@ -171,80 +166,106 @@ const getInTouch = {
   show: true,
   heading: "Get In Touch",
   message:
-    "I'm currently looking for full-time Software Engineering job opportunities specifically in the field of Android Development. If you know of any positions available, if you have any questions, or if you just want to say hi, please feel free to email me at",
+    "For research collaboration, academic opportunities, or invited talks, please contact me at",
   email: "wlssud0701@naver.com",
 };
 
 const experiences = {
   show: true,
-  heading: "Experiences",
+  heading: "Research & Industry Experience",
   data: [
     {
-      role: "Android / iOS Native Engineer", // Here Add Company Name
-      companylogo: require("../editable-stuff/minerinc.png"),
-      date: "May 2021 – Feb 2023",
-    },
-    {
-      role: "Software Engineer Intern",
-      companylogo: require("../editable-stuff/bearrobotics.jpeg"),
-      date: "Mar 2023 – Aug 2023",
-    },
-    {
-      role: "Software Engineer Intern (DS)",
+      role: "Software Engineer Intern (Data Science), Samsung Electronics",
       companylogo: require("../editable-stuff/samsung.png"),
       date: "Jan 2024 - Feb 2024",
     },
     {
-      role: "Master Student (Computer Graphics)",
-      companylogo: require("../editable-stuff/postech.png"),
-      date: "March 2024 - Present",
+      role: "Software Engineer Intern, Bear Robotics",
+      companylogo: require("../editable-stuff/bearrobotics.jpeg"),
+      date: "Mar 2023 - Aug 2023",
+    },
+    {
+      role: "Android / iOS Native Engineer",
+      companylogo: require("../editable-stuff/minerinc.png"),
+      date: "May 2021 – Feb 2023",
+    },
+  ],
+};
+
+const conferencePresentations = {
+  show: true,
+  heading: "Conference Presentations",
+  data: [
+    {
+      title: "Live Demonstration",
+      subtitle: "CVPR 2025",
+      description: "Pixel-aligned RGB-NIR Stereo Imaging and Dataset",
+    },
+    {
+      title: "Poster Presentation",
+      subtitle: "CVPR 2025 Workshop",
+      description: "Computational Cameras and Displays",
+    },
+  ],
+};
+
+const academicService = {
+  show: true,
+  heading: "Academic Service",
+  data: [
+    {
+      title: "Reviewer",
+      subtitle: "2026",
+      description: "ACM SIGGRAPH",
+    },
+  ],
+};
+
+const teachingExperience = {
+  show: true,
+  heading: "Teaching Experience",
+  data: [
+    {
+      title: "Computational Imaging (TA)",
+      subtitle: "Fall 2025",
+      description: "POSTECH",
+    },
+    {
+      title: "Data Structures (TA)",
+      subtitle: "Spring 2025",
+      description: "POSTECH",
+    },
+    {
+      title: "Introduction to Computer Networks (TA)",
+      subtitle: "Fall 2023",
+      description: "Sungkyunkwan University",
     },
   ],
 };
 
 const achievements = {
   show: true,
-  heading: "Awards and Certificates",
+  heading: "Honors and Fellowships",
   data: [
     {
-      title: "ICPC Korea 2018",
-      subtitle: "2018.11",
-      description: "네이버 대표이사상",
+      title: "Creative Scholarship (Full Tuition)",
+      subtitle: "2023",
+      description: "Sungkyunkwan University",
     },
     {
-      title: "오픈핵 해커톤 2019",
-      subtitle: "2019.07",
-      description: "익산시장상",
+      title: "Special Award, ICPC Korea Regional Contest",
+      subtitle: "2018",
+      description: "Onsite Selection Round",
     },
     {
-      title: "Unid-ton 해커톤 2021",
-      subtitle: "2021.11",
-      description: "은상",
+      title: "Advanced to Onsite Selection Round",
+      subtitle: "2021-2023",
+      description: "ICPC Korea Regional Contest",
     },
     {
-      title: "ICPC Korea 2021",
-      subtitle: "2021.11",
-      description: "본선 진출",
-    },
-    {
-      title: "ICPC Korea 2022",
-      subtitle: "2022.11",
-      description: "본선 진출",
-    },
-    {
-      title: "Samsung Software Certificate 2022",
-      subtitle: "2022.12",
-      description: "Pro",
-    },
-    {
-      title: "ICPC Korea 2023",
-      subtitle: "2023.11",
-      description: "본선 진출",
-    },
-    {
-      title: "SKKU Open Source Contributor",
-      subtitle: "2024.1",
-      description: "장려",
+      title: "Samsung Software Certificate Pro",
+      subtitle: "2022",
+      description: "Samsung",
     },
   ],
 };
@@ -265,4 +286,7 @@ export {
   experiences,
   achievements,
   publications,
+  conferencePresentations,
+  academicService,
+  teachingExperience,
 };

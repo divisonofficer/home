@@ -11,6 +11,9 @@ import {
   experiences,
   achievements,
   publications,
+  conferencePresentations,
+  academicService,
+  teachingExperience,
 } from "./editable-stuff/config.js";
 import MainBody from "./components/home/MainBody";
 import AboutMe from "./components/home/AboutMe";
@@ -51,6 +54,13 @@ const Home = React.forwardRef((props, ref) => {
           heading={publications.heading}
           publications={publications.data}
         />
+      )}
+      {conferencePresentations.show && (
+        <Achievements achievements={conferencePresentations} />
+      )}
+      {academicService.show && <Achievements achievements={academicService} />}
+      {teachingExperience.show && (
+        <Achievements achievements={teachingExperience} />
       )}
       {experiences.show && <Experience experiences={experiences} />}
       {achievements.show && <Achievements achievements={achievements} />}

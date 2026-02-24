@@ -15,7 +15,8 @@ const PublicationCard = ({ value }) => {
     authors,
     thumbnail,
     year,
-    github
+    github,
+    page,
   } = value;
 
   const [showFullAbstract, setShowFullAbstract] = useState(false);
@@ -25,17 +26,25 @@ const PublicationCard = ({ value }) => {
   };
 
   return (
-    <Col md={6}>
+    <Col md={12}>
+      
       <Card className="card shadow-lg p-3 mb-5 bg-white rounded">
+        
         <Card.Body>
+        {thumbnail && (
+                <img
+                  src={thumbnail}
+                  alt="thumbnail"
+                  style={{ width: "12rem", height: "12rem", float: "left", marginRight: "15px" }}
+                />
+              )}
           <Card.Title as="h5">{title || <Skeleton />} </Card.Title>
           <Card.Text>
             {abstract ? (
               <>
-                {showFullAbstract ? abstract : `${abstract.substring(0, 250)}...`}
-                <button onClick={toggleAbstract} className="btn btn-primary mt-2 ">
-                  {showFullAbstract ? "Show Less" : "Show More"}
-                </button>
+                {showFullAbstract ? abstract : `${abstract.substring(0, 500)}...`}
+                
+              
               </>
             ) : (
               <Skeleton count={3} />
@@ -44,10 +53,11 @@ const PublicationCard = ({ value }) => {
           {pdf ? <CardButtons urls={
             {
               "PDF": pdf,
+              ...(page && { "Page": page }),
               ...(github && { "GitHub": github }),
             }
           } /> : <Skeleton count={2} />}
-          <hr />
+          
           
           {value ? (
             <CardFooter authors={authors} year={year} />
@@ -70,7 +80,16 @@ const CardButtons = ({ urls }) => {
             className="btn btn-outline-secondary mx-2"
             key={`url-${index}`}
           >
-            <i className="fab fa-github" /> {key}
+            {
+              key === "PDF" && <i className="fa fa-book" /> 
+            }
+            {
+              key === "Page" && <i className="fa fa-external-link-alt" />
+            }
+            {
+              key === "GitHub" && <i className="fa fa-github" />
+            }
+            {key}
           </a>
         })
       }
@@ -106,15 +125,17 @@ const Publications = ({ heading, publications }) => {
     <Jumbotron fluid id="publications" className="bg-light m-0">
       <Container className="">
         <h2 className="display-4 pb-5 text-center">{heading}</h2>
-        <Row>
+        <Row className= "" style={{display: 'block',}}>
           {publications.map((project, index) => {
-               return  <PublicationCard
-                  key={`project-card-${index}`}
-                  id={`project-card-${index}`}
-                  value={project}
-                />
-        })
-          }
+                 return (
+                 <Col key={`project-col-${index}`}  className="d-flex justify-content-center">
+                   <PublicationCard
+                   id={`project-card-${index}`}
+                   value={project}
+                   />
+                 </Col>
+                 );
+          })}
         </Row>
       </Container>
     </Jumbotron>
