@@ -1,11 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.fe927caf.css",
-    "main.js": "/static/js/main.57cc7a2c.js",
+    "main.js": "/static/js/main.af1bdb4a.js",
     "static/js/787.4b24f717.chunk.js": "/static/js/787.4b24f717.chunk.js",
     "static/media/hackertone_2021.jpeg": "/static/media/hackertone_2021.83e5c44728b8622e2e04.jpeg",
+    "static/media/thumb_active_rgb_nir.png": "/static/media/thumb_active_rgb_nir.52bf479d63ea86addbda.png",
     "static/media/hackertone_2019.jpeg": "/static/media/hackertone_2019.bf0be9b2659f1f9fbf05.jpeg",
     "static/media/thumb_rgb_nir.png": "/static/media/thumb_rgb_nir.92db3ce5ea8814acaa49.png",
+    "static/media/thumb_hdr_bracketing.png": "/static/media/thumb_hdr_bracketing.d82968f0bd276f6243a0.png",
     "static/media/thumb_dual_exposure.png": "/static/media/thumb_dual_exposure.d30820a9b513776c4a2e.png",
     "static/media/jinnyeong.jpeg": "/static/media/jinnyeong.f484df6aa042f92fa3ea.jpeg",
     "static/media/2022_icpc.jpg": "/static/media/2022_icpc.43446f51f4b3fdde85be.jpg",
@@ -14,11 +16,11 @@
     "static/media/bearrobotics.jpeg": "/static/media/bearrobotics.797f830cad63e7d84081.jpeg",
     "index.html": "/index.html",
     "main.fe927caf.css.map": "/static/css/main.fe927caf.css.map",
-    "main.57cc7a2c.js.map": "/static/js/main.57cc7a2c.js.map",
+    "main.af1bdb4a.js.map": "/static/js/main.af1bdb4a.js.map",
     "787.4b24f717.chunk.js.map": "/static/js/787.4b24f717.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fe927caf.css",
-    "static/js/main.57cc7a2c.js"
+    "static/js/main.af1bdb4a.js"
   ]
 }
