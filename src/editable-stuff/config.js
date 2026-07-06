@@ -9,6 +9,30 @@ const publications = {
   data: [
     {
       title:
+        "Depth-guided Multi-view Exposure Bracketing for HDR Robot Vision",
+      authors: [
+        "Jinnyeong Kim",
+        "Juhyung Choi",
+        "Woohyeok Kim",
+        "Sunghyun Cho",
+        "Seung-Hwan Baek",
+      ],
+      year: "ECCV 2026",
+      thumbnail: require("../assets/thumb/thumb_hdr_bracketing.png"),
+    },
+    {
+      title: "Ambient-robust Inverse Rendering using Active RGB-NIR Imaging",
+      authors: [
+        "Hoongyu Chung*",
+        "Jinnyeong Kim*",
+        "Hyunwoo Kang",
+        "Seung-Hwan Baek",
+      ],
+      year: "SIGGRAPH 2026",
+      thumbnail: require("../assets/thumb/thumb_active_rgb_nir.png"),
+    },
+    {
+      title:
         "Pixel-aligned RGB-NIR Stereo Imaging and Dataset for Robot Vision",
       authors: ["Jinnyeong Kim", "Seung-Hwan Baek"],
       thumbnail: require("../assets/thumb/thumb_rgb_nir.png"),
@@ -270,6 +294,11 @@ const achievements = {
   show: true,
   heading: "Honors and Fellowships",
   data: [
+    {
+      title: "Doctoral Fellowship for Outstanding Students",
+      subtitle: "2026",
+      description: "Korea Student Aid Foundation (KOSAF)",
+    },
     {
       title: "Creative Scholarship (Full Tuition)",
       subtitle: "2023",

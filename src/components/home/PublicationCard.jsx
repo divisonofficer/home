@@ -107,8 +107,8 @@ const CardFooter = ({ authors, year }) => {
       >
         <span className="text-dark card-link mr-4">
           <i className="fab" /> {
-            authors ? authors.map(author => 
-              author === "Jinnyeong Kim" ? <b key={author}>{author}</b> : <span key={author}>{author}</span>
+            authors ? authors.map(author =>
+              author.replace("*", "") === "Jinnyeong Kim" ? <b key={author}>{author}</b> : <span key={author}>{author}</span>
             ).reduce((prev, curr) => [prev, ', ', curr]) : <Skeleton count={2} />
           }
         </span>
