@@ -262,6 +262,18 @@ const conferencePresentations = {
   heading: "Conference Presentations",
   data: [
     {
+      title: "Poster Presentation",
+      subtitle: "ECCV 2026 Main Conference",
+      description:
+        "Depth-guided Multi-view Exposure Bracketing for HDR Robot Vision",
+    },
+    {
+      title: "Poster Presentation",
+      subtitle: "MUSTCV 2026",
+      description:
+        "The 5th Workshop on Computer Vision for Multimedia Spatial Intelligence through Time — Depth-guided Multi-view Exposure Bracketing for HDR Robot Vision",
+    },
+    {
       title: "Paper Presentation",
       subtitle: "ACM SIGGRAPH 2026",
       description:
