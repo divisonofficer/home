@@ -262,6 +262,18 @@ const conferencePresentations = {
   heading: "Conference Presentations",
   data: [
     {
+      title: "Paper Presentation",
+      subtitle: "ACM SIGGRAPH 2026",
+      description:
+        "Ambient-robust Inverse Rendering using Active RGB-NIR Imaging",
+    },
+    {
+      title: "Oral Presentation",
+      subtitle: "SIGGRAPH 2026 Graphics4Science (3-Minute Talk)",
+      description:
+        "July 20, 9:00 AM, Room 406AB — Ambient-robust Inverse Rendering using Active RGB-NIR Imaging",
+    },
+    {
       title: "Live Demonstration",
       subtitle: "CVPR 2025",
       description: "Pixel-aligned RGB-NIR Stereo Imaging and Dataset",
@@ -312,6 +324,11 @@ const achievements = {
   show: true,
   heading: "Honors and Fellowships",
   data: [
+    {
+      title: "Outstanding Doctoral Research Fellowship",
+      subtitle: "2026",
+      description: "National Research Foundation of Korea (NRF)",
+    },
     {
       title: "Doctoral Fellowship for Outstanding Students",
       subtitle: "2026",
