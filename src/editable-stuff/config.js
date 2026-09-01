@@ -8,6 +8,21 @@ const publications = {
   heading: "Publications",
   data: [
     {
+      title: "Snapshot Polarimetric Display Inverse Rendering",
+      authors: [
+        "Seokjun Choi*",
+        "Yunseong Moon*",
+        "Kaizhang Kang",
+        "Hoon-Gyu Chung",
+        "Jin-Nyeong Kim",
+        "Giljoo Nam",
+        "Seung-Hwan Baek",
+      ],
+      year: "SIGGRAPH Asia 2026 (Transactions on Graphics)",
+      thumbnail:
+        "https://lh3.googleusercontent.com/sitesv/AG8ngQVAoJxd4lSGzDtTZmMhzjZvcJk-U-FLQdL5tdgU9Tilj6dZgay83KMBdPlosHPAY03wYUM6bkus618_SEiVAfO5eaTqeUA9juCZBJ7pALFe20w4h-oxMQIuQo58Hua09WgVEmaVl7tSjyRolCaeKBprRFpdvKfOl6z9Xxy2bkNXcZTTmPMit6csD1R0TwoOPoElF5PaAgQV6DhVciw84Ca3BVlu3hif2VXR=w1280",
+    },
+    {
       title:
         "Depth-guided Multi-view Exposure Bracketing for HDR Robot Vision",
       authors: [
@@ -19,6 +34,7 @@ const publications = {
       ],
       year: "ECCV 2026",
       thumbnail: require("../assets/thumb/thumb_hdr_bracketing.png"),
+      page: "https://divisonofficer.github.io/dmeb/",
     },
     {
       title: "Ambient-robust Inverse Rendering using Active RGB-NIR Imaging",
@@ -30,6 +46,8 @@ const publications = {
       ],
       year: "SIGGRAPH 2026",
       thumbnail: require("../assets/thumb/thumb_active_rgb_nir.png"),
+      page:
+        "https://divisonofficer.github.io/Ambient-robust-Inverse-Rendering-using-Active-RGB-NIR-Imaging/",
     },
     {
       title:
@@ -244,6 +262,30 @@ const conferencePresentations = {
   heading: "Conference Presentations",
   data: [
     {
+      title: "Poster Presentation",
+      subtitle: "ECCV 2026 Main Conference",
+      description:
+        "Depth-guided Multi-view Exposure Bracketing for HDR Robot Vision",
+    },
+    {
+      title: "Poster Presentation",
+      subtitle: "MUSTCV 2026",
+      description:
+        "The 5th Workshop on Computer Vision for Multimedia Spatial Intelligence through Time — Depth-guided Multi-view Exposure Bracketing for HDR Robot Vision",
+    },
+    {
+      title: "Paper Presentation",
+      subtitle: "ACM SIGGRAPH 2026",
+      description:
+        "Ambient-robust Inverse Rendering using Active RGB-NIR Imaging",
+    },
+    {
+      title: "Oral Presentation",
+      subtitle: "SIGGRAPH 2026 Graphics4Science (3-Minute Talk)",
+      description:
+        "July 20, 9:00 AM, Room 406AB — Ambient-robust Inverse Rendering using Active RGB-NIR Imaging",
+    },
+    {
       title: "Live Demonstration",
       subtitle: "CVPR 2025",
       description: "Pixel-aligned RGB-NIR Stereo Imaging and Dataset",
@@ -294,6 +336,11 @@ const achievements = {
   show: true,
   heading: "Honors and Fellowships",
   data: [
+    {
+      title: "Outstanding Doctoral Research Fellowship",
+      subtitle: "2026",
+      description: "National Research Foundation of Korea (NRF)",
+    },
     {
       title: "Doctoral Fellowship for Outstanding Students",
       subtitle: "2026",

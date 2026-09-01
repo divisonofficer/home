@@ -39,24 +39,22 @@ const PublicationCard = ({ value }) => {
                 />
               )}
           <Card.Title as="h5">{title || <Skeleton />} </Card.Title>
-          <Card.Text>
-            {abstract ? (
-              <>
-                {showFullAbstract ? abstract : `${abstract.substring(0, 500)}...`}
-                
-              
-              </>
-            ) : (
-              <Skeleton count={3} />
-            )}
-          </Card.Text>
-          {pdf ? <CardButtons urls={
-            {
-              "PDF": pdf,
-              ...(page && { "Page": page }),
-              ...(github && { "GitHub": github }),
-            }
-          } /> : <Skeleton count={2} />}
+          {abstract && (
+            <Card.Text>
+              {showFullAbstract
+                ? abstract
+                : `${abstract.substring(0, 500)}...`}
+            </Card.Text>
+          )}
+          {(pdf || page || github) && (
+            <CardButtons
+              urls={{
+                ...(pdf && { PDF: pdf }),
+                ...(page && { Page: page }),
+                ...(github && { GitHub: github }),
+              }}
+            />
+          )}
           
           
           {value ? (
