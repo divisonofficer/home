@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.fe927caf.css",
-    "main.js": "/static/js/main.af1bdb4a.js",
+    "main.css": "/static/css/main.b5e8835c.css",
+    "main.js": "/static/js/main.ef34ba6b.js",
     "static/js/787.4b24f717.chunk.js": "/static/js/787.4b24f717.chunk.js",
     "static/media/hackertone_2021.jpeg": "/static/media/hackertone_2021.83e5c44728b8622e2e04.jpeg",
     "static/media/thumb_active_rgb_nir.png": "/static/media/thumb_active_rgb_nir.52bf479d63ea86addbda.png",
@@ -15,12 +15,12 @@
     "static/media/minerinc.png": "/static/media/minerinc.cc689d390179e9a8e4a4.png",
     "static/media/bearrobotics.jpeg": "/static/media/bearrobotics.797f830cad63e7d84081.jpeg",
     "index.html": "/index.html",
-    "main.fe927caf.css.map": "/static/css/main.fe927caf.css.map",
-    "main.af1bdb4a.js.map": "/static/js/main.af1bdb4a.js.map",
+    "main.b5e8835c.css.map": "/static/css/main.b5e8835c.css.map",
+    "main.ef34ba6b.js.map": "/static/js/main.ef34ba6b.js.map",
     "787.4b24f717.chunk.js.map": "/static/js/787.4b24f717.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fe927caf.css",
-    "static/js/main.af1bdb4a.js"
+    "static/css/main.b5e8835c.css",
+    "static/js/main.ef34ba6b.js"
   ]
 }
