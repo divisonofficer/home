@@ -1,144 +1,109 @@
-import React, { useState, useEffect, useCallback } from "react";
-import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
-import Skeleton from "react-loading-skeleton";
-import Container from "react-bootstrap/Container";
-import { Jumbotron } from "./migration";
-import Row from "react-bootstrap/Row";
+import React, { useState } from "react";
+import { SectionHead, AuthorList } from "../design/DesignSystem";
 
+const LINK_META = {
+  page: { label: "Project", icon: "fas fa-folder-open" },
+  pdf: { label: "arXiv", icon: "far fa-file-alt" },
+  github: { label: "Code", icon: "fab fa-github" },
+};
 
-const PublicationCard = ({ value }) => {
-  const {
-    title,
-    abstract,
-    pdf,
-    authors,
-    thumbnail,
-    year,
-    github,
-    page,
-  } = value;
-
-  const [showFullAbstract, setShowFullAbstract] = useState(false);
-
-  const toggleAbstract = () => {
-    setShowFullAbstract(!showFullAbstract);
-  };
+const PublicationLinks = ({ value }) => {
+  const links = ["page", "pdf", "github"].filter((key) => value[key]);
+  if (!links.length) return null;
 
   return (
-    <Col md={12}>
-      
-      <Card className="card shadow-lg p-3 mb-5 bg-white rounded">
-        
-        <Card.Body>
-        {thumbnail && (
-                <img
-                  src={thumbnail}
-                  alt="thumbnail"
-                  style={{ width: "12rem", height: "12rem", float: "left", marginRight: "15px" }}
-                />
-              )}
-          <Card.Title as="h5">{title || <Skeleton />} </Card.Title>
-          {abstract && (
-            <Card.Text>
-              {showFullAbstract
-                ? abstract
-                : `${abstract.substring(0, 500)}...`}
-            </Card.Text>
-          )}
-          {(pdf || page || github) && (
-            <CardButtons
-              urls={{
-                ...(pdf && { PDF: pdf }),
-                ...(page && { Page: page }),
-                ...(github && { GitHub: github }),
-              }}
-            />
-          )}
-          
-          
-          {value ? (
-            <CardFooter authors={authors} year={year} />
-          ) : (
-            <Skeleton />
-          )}
-        </Card.Body>
-      </Card>
-    </Col>
+    <>
+      {links.map((key) => (
+        <a
+          key={key}
+          className="ds-chip"
+          href={value[key]}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className={LINK_META[key].icon} />
+          {LINK_META[key].label}
+        </a>
+      ))}
+    </>
   );
 };
 
-const CardButtons = ({ urls }) => {
+const PublicationEntry = ({ value }) => {
+  const { title, abstract, authors, thumbnail, year, page, pdf } = value;
+  const [showAbstract, setShowAbstract] = useState(false);
+  // A remotely hosted thumbnail can go away; drop the whole frame rather than
+  // leaving a black box in the grid.
+  const [thumbFailed, setThumbFailed] = useState(false);
+
+  // The first available link is what the title and thumbnail point at.
+  const primary = page || pdf;
+  const showThumb = Boolean(thumbnail) && !thumbFailed;
+  const image = (
+    <img src={thumbnail} alt="" onError={() => setThumbFailed(true)} />
+  );
+
   return (
-    <div className="d-grid gap-2 d-md-block">
-      {
-        Object.keys(urls).map((key, index) => {
-          return <a
-            href={urls[key]}
-            className="btn btn-outline-secondary mx-2"
-            key={`url-${index}`}
+    <article className={`ds-pub ${showThumb ? "" : "ds-pub--no-thumb"}`.trim()}>
+      {showThumb &&
+        (primary ? (
+          <a
+            className="ds-pub__thumb"
+            href={primary}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-hidden="true"
+            tabIndex={-1}
           >
-            {
-              key === "PDF" && <i className="fa fa-book" /> 
-            }
-            {
-              key === "Page" && <i className="fa fa-external-link-alt" />
-            }
-            {
-              key === "GitHub" && <i className="fa fa-github" />
-            }
-            {key}
+            {image}
           </a>
-        })
-      }
-    </div>
+        ) : (
+          <div className="ds-pub__thumb">{image}</div>
+        ))}
+
+      <div className="ds-pub__body">
+        <h3 className="ds-pub__title">
+          {primary ? (
+            <a href={primary} target="_blank" rel="noopener noreferrer">
+              {title}
+            </a>
+          ) : (
+            title
+          )}
+        </h3>
+
+        <AuthorList authors={authors} />
+
+        <div className="ds-pub__meta">
+          {year && <span className="ds-pub__venue">{year}</span>}
+          <PublicationLinks value={value} />
+        </div>
+
+        {abstract && (
+          <>
+            <button
+              type="button"
+              className="ds-pub__abstract-toggle"
+              aria-expanded={showAbstract}
+              onClick={() => setShowAbstract((open) => !open)}
+            >
+              {showAbstract ? "− Hide abstract" : "+ Abstract"}
+            </button>
+            {showAbstract && <p className="ds-pub__abstract">{abstract}</p>}
+          </>
+        )}
+      </div>
+    </article>
   );
 };
 
-
-const CardFooter = ({ authors, year }) => {
-  return (
-    <p className="card-text">
-      <a
-        target="_blank"
-        className="text-dark text-decoration-none"
-      >
-        <span className="text-dark card-link mr-4">
-          <i className="fab" /> {
-            authors ? authors.map(author =>
-              author.replace("*", "") === "Jinnyeong Kim" ? <b key={author}>{author}</b> : <span key={author}>{author}</span>
-            ).reduce((prev, curr) => [prev, ', ', curr]) : <Skeleton count={2} />
-          }
-        </span>
-      </a>
-      <br />
-      <small className="text-muted">Published {year}</small>
-    </p>
-  );
-};
-
-const Publications = ({ heading, publications }) => {
-
-  return (
-    <Jumbotron fluid id="publications" className="bg-light m-0">
-      <Container className="">
-        <h2 className="display-4 pb-5 text-center">{heading}</h2>
-        <Row className= "" style={{display: 'block',}}>
-          {publications.map((project, index) => {
-                 return (
-                 <Col key={`project-col-${index}`}  className="d-flex justify-content-center">
-                   <PublicationCard
-                   id={`project-card-${index}`}
-                   value={project}
-                   />
-                 </Col>
-                 );
-          })}
-        </Row>
-      </Container>
-    </Jumbotron>
-  );
-};
-
+const Publications = ({ heading, eyebrow, publications }) => (
+  <section id="publications" className="ds-section">
+    <SectionHead eyebrow={eyebrow} title={heading} />
+    {publications.map((publication, index) => (
+      <PublicationEntry key={`publication-${index}`} value={publication} />
+    ))}
+  </section>
+);
 
 export default Publications;

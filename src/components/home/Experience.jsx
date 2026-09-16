@@ -1,30 +1,16 @@
-import React from 'react';
+import React from "react";
 import ExperienceCard from "./ExperienceCard";
-import { Jumbotron } from './migration';
-import {
-  Container,
-  Row,
-} from "react-bootstrap";
+import { SectionHead } from "../design/DesignSystem";
 
-const Experience = ({ experiences }) => {
-  return (
-    <section className="section">
-      <Container>
-        <Jumbotron className="bg-white">
-          <h2 className="display-4 mb-5 text-center">
-            {experiences.heading}
-          </h2>
-          <Row>
-            {
-              experiences.data.map((data, index) => {
-                return <ExperienceCard key={index} data={data} />
-              })
-            }
-          </Row>
-        </Jumbotron>
-      </Container>
-    </section>
-  );
-}
+const Experience = ({ experiences }) => (
+  <section id="experience" className="ds-section">
+    <SectionHead eyebrow={experiences.eyebrow} title={experiences.heading} />
+    <div className="ds-cards">
+      {experiences.data.map((data, index) => (
+        <ExperienceCard key={index} data={data} />
+      ))}
+    </div>
+  </section>
+);
 
 export default Experience;

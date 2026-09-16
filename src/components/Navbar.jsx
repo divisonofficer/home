@@ -1,95 +1,69 @@
-import React, { useState } from "react";
-import { useScrollPosition } from "../hooks/useScrollPosition";
-import useResizeObserver from "../hooks/useResizeObserver";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import { mainBody, about, skills, publications } from "../editable-stuff/config.js";
-import { NavLink } from "./home/migration";
+import React from "react";
+import {
+  mainBody,
+  about,
+  publications,
+  experiences,
+  education,
+  getInTouch,
+} from "../editable-stuff/config.js";
 
+// Sticky hairline header with pill navigation. Collapses to a disclosure menu
+// below 900px (see .ds-nav in scss/_site.scss).
 const Navigation = React.forwardRef((props, ref) => {
-  // const { showBlog, FirstName } = config;
-  const [isTop, setIsTop] = useState(true);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const navbarMenuRef = React.useRef();
-  const navbarDimensions = useResizeObserver(navbarMenuRef);
-  const navBottom = navbarDimensions ? navbarDimensions.bottom : 0;
-  useScrollPosition(
-    ({ prevPos, currPos }) => {
-      if (!navbarDimensions) return;
-      currPos.y + ref.current.offsetTop - navbarDimensions.bottom > 5
-        ? setIsTop(true)
-        : setIsTop(false);
-      setScrollPosition(currPos.y);
-    },
-    [navBottom]
-  );
+  const [open, setOpen] = React.useState(false);
+  const base = process.env.PUBLIC_URL + "/";
 
-  React.useEffect(() => {
-    if (!navbarDimensions) return;
-    navBottom - scrollPosition >= ref.current.offsetTop
-      ? setIsTop(false)
-      : setIsTop(true);
-  }, [navBottom, navbarDimensions, ref, scrollPosition]);
+  const links = [
+    about.show && { href: `${base}#about`, label: "About" },
+    publications.show && { href: `${base}#publications`, label: "Publications" },
+    education.show && { href: `${base}#education`, label: "Education" },
+    experiences.show && { href: `${base}#experience`, label: "Experience" },
+    about.resume && {
+      href: about.resume,
+      label: "Resume",
+      target: "_blank",
+      rel: "noreferrer noopener",
+    },
+    getInTouch.show && { href: `${base}#contact`, label: "Contact" },
+  ].filter(Boolean);
 
   return (
-    <Navbar
-      ref={navbarMenuRef}
-      className={`px-3 fixed-top  ${!isTop ? "navbar-white" : "navbar-transparent"
-        }`}
-      expand="lg"
-    >
-      <Navbar.Brand className="navbar-brand" href={process.env.PUBLIC_URL + "/#home"}>
-        {`<${mainBody.firstName} />`}
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" className="toggler" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="navbar-nav mr-auto">
-          {/* {
-            <NavLink className="nav-item lead">
-              <Link to={process.env.PUBLIC_URL + "/blog"}>Blog</Link>
-            </NavLink>
-          } */}
-          {publications.show && (
+    <header className="ds-header">
+      <div className="ds-header__inner">
+        <a className="ds-brand" href={`${base}#home`} ref={ref}>
+          {`<${mainBody.firstName} />`}
+        </a>
 
-            <NavLink
-              href={process.env.PUBLIC_URL + "/#publications"}
+        <button
+          type="button"
+          className="ds-nav-toggle"
+          aria-expanded={open}
+          aria-label="Toggle navigation"
+          onClick={() => setOpen((value) => !value)}
+        >
+          <i className={`fas ${open ? "fa-times" : "fa-bars"}`} />
+        </button>
+
+        <nav
+          aria-label="Main navigation"
+          className={`ds-nav ${open ? "ds-nav--open" : ""}`.trim()}
+        >
+          {links.map((link) => (
+            <a
+              key={link.label}
+              className="ds-nav__link"
+              href={link.href}
+              target={link.target}
+              rel={link.rel}
+              onClick={() => setOpen(false)}
             >
-              Publications
-            </NavLink>
-          )}
-          <NavLink
-            className="nav-item lead"
-            href={process.env.PUBLIC_URL + "/#education"}
-          >
-            Education
-          </NavLink>
-          <NavLink
-            className="nav-item lead"
-            href={about.resume}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Resume
-          </NavLink>
-          {about.show && (
-            <NavLink
-              className="nav-item lead"
-              href={process.env.PUBLIC_URL + "/#aboutme"}
-            >
-              About
-            </NavLink>
-          )}
-          {skills.show && (
-            <NavLink
-              className="nav-item lead"
-              href={process.env.PUBLIC_URL + "/#skills"}
-            >
-              Skills
-            </NavLink>
-          )}
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
   );
 });
 

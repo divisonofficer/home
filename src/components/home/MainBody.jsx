@@ -1,64 +1,50 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
-import Typist from 'react-typist-component';
-import { Jumbotron } from "./migration";
+import { Eyebrow, Button } from "../design/DesignSystem";
 
+// Hero: eyebrow, display headline with the crimson tagline clause, lede,
+// two actions, and the portrait in a 4:5 rounded frame.
 const MainBody = React.forwardRef(
-  ({ gradient, title, message, icons }, ref) => {
-    return (
-      <Jumbotron
-        fluid
-        id="home"
-        style={{
-          background: `linear-gradient(136deg,${gradient})`,
-          backgroundSize: "1200% 1200%",
-        }}
-        className="title bg-transparent bgstyle text-light min-vh-100 d-flex align-content-center align-items-center flex-wrap m-0"
-      >
-        <div id="stars"></div>
-        <Container className="text-center">
-          <h1 ref={ref} className="display-1">
-            {title}
-          </h1>
-          <Typist>
-            <div className="lead typist">
-              {message}
-            </div>
-          </Typist>
-          <div className="p-5">
-            {icons.map((icon, index) => (
-              <a
-                key={`social-icon-${index}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                href={icon.url}
-                aria-label={`My ${icon.image.split("-")[1]}`}
-              >
-                <i className={`fab ${icon.image}  fa-3x socialicons`} />
-              </a>
-            ))}
-          </div>
-          <a
-            className="btn btn-outline-light btn-lg m-2"
-            href="#publications"
-            role="button"
-            aria-label="My publications"
-          >
-            Publications
-          </a>
+  ({ eyebrow, name, tagline, message, icons, portrait, portraitAlt }, ref) => (
+    <section id="home" className="ds-hero">
+      <div className="ds-hero__copy">
+        {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
 
-          <a
-            className="btn btn-outline-light btn-lg "
-            href="#aboutme"
-            role="button"
-            aria-label="Learn more about me"
-          >
-            More about me
-          </a>
-        </Container>
-      </Jumbotron>
-    );
-  }
+        <h1 className="ds-hero__title" ref={ref}>
+          {tagline ? (
+            <>
+              {name}, <em>{tagline}</em>
+            </>
+          ) : (
+            name
+          )}
+        </h1>
+
+        <p className="ds-hero__lede">{message}</p>
+
+        <div className="ds-hero__actions">
+          {icons.map((icon, index) => (
+            <Button
+              key={icon.url}
+              href={icon.url}
+              variant={index === 0 ? "primary" : "secondary"}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`My ${icon.label}`}
+            >
+              <i className={`fab ${icon.image}`} />
+              {icon.label}
+            </Button>
+          ))}
+        </div>
+      </div>
+
+      {portrait && (
+        <div className="ds-hero__portrait">
+          <img src={portrait} alt={portraitAlt} />
+        </div>
+      )}
+    </section>
+  )
 );
 
 export default MainBody;

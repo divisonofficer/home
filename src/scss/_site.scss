@@ -1,0 +1,732 @@
+/* ============================================================================
+   Site layout — built on the tokens in _tokens.scss.
+   Everything here is class-based so the desktop composition from the design
+   canvas can collapse at narrow widths.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   primitives
+   ------------------------------------------------------------------------- */
+
+.ds-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: var(--label-size);
+  font-weight: var(--label-weight);
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+  color: var(--label-fg);
+
+  &::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex: none;
+  }
+}
+
+.ds-label--plain {
+  color: var(--text-secondary);
+  &::before { display: none; }
+}
+
+.ds-label--on-panel {
+  color: var(--crimson-300);
+}
+
+.ds-sectionhead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-9);
+}
+
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  min-height: 52px;
+  padding: 0 var(--space-8);
+  border-radius: var(--radius-3);
+  border: 1px solid transparent;
+  font-family: var(--font-ui);
+  font-size: var(--size-body-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--track-wide);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-ui);
+}
+
+.ds-btn--primary {
+  background: var(--action-primary-bg);
+  border-color: var(--action-primary-bg);
+  color: var(--text-on-accent);
+
+  &:hover {
+    background: var(--action-primary-bg-hover);
+    border-color: var(--action-primary-bg-hover);
+    color: var(--text-on-accent);
+  }
+}
+
+.ds-btn--secondary {
+  background: var(--action-secondary-bg);
+  border-color: var(--action-secondary-border);
+  color: var(--text-primary);
+
+  &:hover {
+    border-color: var(--action-secondary-border-hover);
+    color: var(--text-primary);
+  }
+}
+
+.ds-btn--on-panel {
+  background: transparent;
+  border-color: var(--border-on-panel);
+  color: var(--text-on-panel);
+  font-family: var(--font-code);
+  font-weight: var(--weight-medium);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--text-on-panel);
+    color: var(--text-on-panel);
+  }
+}
+
+/* small monospace pill used for paper links (Project / PDF / arXiv / code) */
+.ds-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 7px 12px;
+  border-radius: var(--radius-1);
+  border: 1px solid var(--line-2);
+  font-family: var(--font-code);
+  font-size: var(--size-meta);
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+  white-space: nowrap;
+
+  &:hover {
+    border-color: var(--ink-0);
+    color: var(--text-primary);
+  }
+
+  i { font-size: 12px; }
+}
+
+.ds-btn,
+.ds-chip,
+.ds-nav__link,
+.ds-brand,
+.ds-plainlink {
+  border-bottom-style: solid;
+}
+
+/* links that should not carry the crimson underline */
+.ds-plainlink {
+  color: inherit;
+  border: none;
+
+  &:hover { color: var(--link-hover); }
+}
+
+/* ---------------------------------------------------------------------------
+   header / nav
+   ------------------------------------------------------------------------- */
+
+.ds-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--surface-page);
+  border-bottom: 1px solid var(--border-hairline);
+  padding: var(--space-4) var(--gutter);
+}
+
+.ds-header__inner {
+  max-width: var(--width-wide);
+  margin: 0 auto;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.ds-brand {
+  font-family: var(--font-code);
+  font-weight: var(--weight-semibold);
+  font-size: var(--size-body);
+  color: var(--text-primary);
+  border: none;
+  white-space: nowrap;
+
+  &:hover { color: var(--text-accent); }
+}
+
+.ds-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.ds-nav__link {
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  font-size: var(--size-body-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  border: none;
+  white-space: nowrap;
+
+  &:hover {
+    background: var(--nav-active-bg);
+    color: var(--nav-active-fg);
+  }
+}
+
+.ds-nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-2);
+  background: var(--surface-card);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------------------------------
+   page frame
+   ------------------------------------------------------------------------- */
+
+.ds-shell {
+  max-width: 100%;
+  overflow-x: hidden;
+  background: var(--surface-page);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.ds-main {
+  max-width: var(--width-wide);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  flex: 1 0 auto;
+}
+
+.ds-section {
+  padding: var(--space-12) 0;
+}
+
+/* ---------------------------------------------------------------------------
+   hero
+   ------------------------------------------------------------------------- */
+
+.ds-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: var(--space-13);
+  align-items: center;
+  padding: var(--space-13) 0 var(--space-12);
+}
+
+.ds-hero__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  min-width: 0;
+}
+
+.ds-hero__title {
+  margin: 0;
+  font-size: var(--size-display);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--track-display);
+  line-height: var(--lh-tight);
+  color: var(--text-primary);
+}
+
+.ds-hero__title em {
+  font-style: normal;
+  color: var(--crimson-500);
+}
+
+.ds-hero__lede {
+  margin: 0;
+  max-width: 56ch;
+  font-size: var(--size-body-lg);
+  line-height: var(--lh-normal);
+  color: var(--text-body);
+}
+
+.ds-actions,
+.ds-hero__actions {
+  display: flex;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+}
+
+/* the About section's single action needs air above the prose */
+.ds-actions { margin-top: var(--space-8); }
+
+.ds-hero__portrait {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-5);
+  overflow: hidden;
+  border: 1px solid var(--border-hairline);
+  background: var(--paper-2);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   prose
+   ------------------------------------------------------------------------- */
+
+.ds-prose {
+  max-width: var(--measure-prose);
+  font-size: var(--size-body);
+  line-height: var(--lh-normal);
+  color: var(--text-body);
+
+  p + p { margin-top: var(--space-6); }
+}
+
+/* ---------------------------------------------------------------------------
+   publications
+   ------------------------------------------------------------------------- */
+
+.ds-pub {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: start;
+  padding: var(--space-8) 0;
+  border-bottom: 1px solid var(--rule-hair);
+
+  &:last-child { border-bottom: none; }
+}
+
+.ds-pub--no-thumb {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.ds-pub__thumb {
+  display: block;
+  border: none;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-4);
+  overflow: hidden;
+  background: var(--surface-media);
+  border: 1px solid var(--border-hairline);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.ds-pub__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.ds-pub__title {
+  margin: 0;
+  font-size: var(--size-h4);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--track-tight);
+  font-weight: var(--weight-bold);
+
+  a {
+    color: var(--text-primary);
+    border: none;
+
+    &:hover { color: var(--text-accent); }
+  }
+}
+
+.ds-authors {
+  margin: 0;
+  font-size: var(--size-body-sm);
+  line-height: var(--lh-snug);
+  color: var(--text-secondary);
+}
+
+.ds-authors__me {
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+}
+
+.ds-authors__marker {
+  color: var(--text-accent);
+}
+
+.ds-pub__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.ds-pub__venue {
+  font-family: var(--font-ui);
+  font-size: var(--size-meta);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--track-wide);
+  color: var(--text-primary);
+}
+
+.ds-pub__abstract-toggle {
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: var(--font-code);
+  font-size: var(--size-meta);
+  color: var(--text-muted);
+  cursor: pointer;
+
+  &:hover { color: var(--text-accent); }
+}
+
+.ds-pub__abstract {
+  margin: 0;
+  max-width: var(--measure-abstract);
+  font-size: var(--size-body-sm);
+  line-height: var(--lh-normal);
+  color: var(--text-body);
+}
+
+/* ---------------------------------------------------------------------------
+   timeline (education)
+   ------------------------------------------------------------------------- */
+
+.ds-timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-timeline__row {
+  display: grid;
+  grid-template-columns: minmax(0, 140px) minmax(0, 1fr);
+  gap: var(--space-8);
+  padding: var(--space-7) 0;
+  border-bottom: 1px solid var(--rule-hair);
+
+  &:last-child { border-bottom: none; }
+}
+
+.ds-timeline__when {
+  font-family: var(--font-code);
+  font-size: var(--size-meta);
+  color: var(--text-accent);
+  font-weight: var(--weight-semibold);
+}
+
+.ds-timeline__title {
+  margin: 0;
+  font-size: var(--size-body);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+}
+
+.ds-timeline__note {
+  margin: var(--space-2) 0 0 0;
+  font-size: var(--size-body-sm);
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   experience cards
+   ------------------------------------------------------------------------- */
+
+.ds-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-8);
+}
+
+.ds-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-8);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-5);
+  background: var(--surface-card);
+}
+
+.ds-card__logo {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-2);
+  overflow: hidden;
+  background: var(--paper-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.ds-card__role {
+  margin: 0;
+  font-size: var(--size-body-sm);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  line-height: var(--lh-snug);
+}
+
+.ds-card__date {
+  margin: var(--space-3) 0 0 0;
+  font-family: var(--font-code);
+  font-size: var(--size-caption);
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   academic record: presentations / teaching / service
+   ------------------------------------------------------------------------- */
+
+.ds-record {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-10);
+  align-items: start;
+}
+
+.ds-record__col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ds-record__list {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--space-4);
+}
+
+.ds-entry {
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--rule-hair);
+
+  &:last-child { border-bottom: none; }
+}
+
+.ds-entry__title {
+  margin: 0;
+  font-size: var(--size-body-sm);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+}
+
+.ds-entry__meta {
+  margin: var(--space-2) 0 0;
+  font-size: var(--size-caption);
+  font-family: var(--font-code);
+  color: var(--text-accent);
+}
+
+.ds-entry__note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--size-caption);
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   honors grid
+   ------------------------------------------------------------------------- */
+
+.ds-honors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6) var(--space-10);
+}
+
+/* Every honor keeps its rule — in a two-column grid the bottom row would
+   otherwise sit lopsided, with only one of the two cells underlined. */
+.ds-honors .ds-entry {
+  padding: var(--space-6) 0;
+  border-bottom: 1px solid var(--rule-hair);
+}
+
+/* ---------------------------------------------------------------------------
+   contact panel
+   ------------------------------------------------------------------------- */
+
+.ds-panel {
+  background: var(--surface-panel);
+  color: var(--text-on-panel);
+  border-radius: var(--radius-5);
+  padding: var(--space-11);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  align-items: flex-start;
+}
+
+.ds-panel__message {
+  margin: 0;
+  max-width: 56ch;
+  font-size: var(--size-h4);
+  line-height: var(--lh-normal);
+  color: var(--text-on-panel);
+}
+
+.ds-panel__actions {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+/* ---------------------------------------------------------------------------
+   footer
+   ------------------------------------------------------------------------- */
+
+.ds-footer {
+  border-top: 1px solid var(--border-hairline);
+  padding: var(--space-9) var(--gutter);
+  margin-top: auto;
+}
+
+.ds-footer__inner {
+  max-width: var(--width-wide);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.ds-footer__copy {
+  margin: 0;
+  font-size: var(--size-caption);
+  color: var(--text-muted);
+}
+
+.ds-footer__links {
+  display: flex;
+  gap: var(--space-7);
+
+  a {
+    font-size: var(--size-caption);
+    color: var(--text-secondary);
+    border: none;
+
+    &:hover { color: var(--text-accent); }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   responsive — the canvas is composed for desktop; collapse from the widest
+   grids inward.
+   ------------------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .ds-hero { gap: var(--space-11); }
+  .ds-record { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --gutter: 24px;
+    --size-display: 46px;
+  }
+
+  .ds-nav-toggle { display: inline-flex; }
+
+  .ds-header__inner {
+    flex-wrap: wrap;
+  }
+
+  .ds-nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding-bottom: var(--space-4);
+  }
+
+  .ds-nav--open { display: flex; }
+
+  .ds-nav__link {
+    border-radius: var(--radius-2);
+    padding: 12px 14px;
+  }
+
+  .ds-hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-9);
+    padding: var(--space-11) 0 var(--space-10);
+  }
+
+  .ds-hero__portrait {
+    max-width: 320px;
+    aspect-ratio: 1 / 1;
+  }
+
+  .ds-cards,
+  .ds-record,
+  .ds-honors {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+
+  .ds-section { padding: var(--space-10) 0; }
+  .ds-panel { padding: var(--space-9); }
+}
+
+@media (max-width: 620px) {
+  :root {
+    --gutter: 16px;
+    --size-display: 36px;
+    --size-h2: 27px;
+  }
+
+  .ds-pub {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .ds-timeline__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  .ds-actions .ds-btn,
+  .ds-hero__actions .ds-btn { flex: 1 1 100%; }
+}

@@ -1,0 +1,309 @@
+/* ============================================================================
+   POSTECH Computational Imaging — design tokens
+   Ported from the Claude Design canvas. Colour, type, spacing and surface
+   values are literal; everything downstream references the semantic aliases.
+   ========================================================================== */
+
+/* Pretendard Variable is the nearest available match to the group homepage's
+   heavy grotesque wordmark and carries the Hangul the bilingual copy needs. */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 45 920;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2") format("woff2-variations");
+}
+
+:root {
+  --font-sans: "Pretendard Variable", Pretendard, "Noto Sans KR", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: var(--font-sans);
+  --font-ui: var(--font-sans);
+  --font-code: var(--font-mono);
+}
+
+:root {
+  /* ---- paper: warm off-white ground, lightest -> darkest ---- */
+  --paper-0: #ffffff;
+  --paper-1: #faf9f8;
+  --paper-2: #f2f0ee;
+  --paper-3: #e5e2df;
+
+  /* ---- ink. --ink-0 is the dark research panel and all primary text ---- */
+  --ink-0: #1b1b1d;
+  --ink-1: #2e2e31;
+  --ink-2: #5f6065;
+  --ink-3: #8e8f94;
+  --ink-4: #bfc0c4;
+
+  /* ---- rules ---- */
+  --line-1: #e4e2df;
+  --line-2: #c9c6c2;
+  --line-3: #1b1b1d;
+
+  /* ---- crimson: the single brand accent. --crimson-500 is the logo magenta ---- */
+  --crimson-900: #4a0526;
+  --crimson-800: #7a0340;
+  --crimson-700: #a00350;
+  --crimson-600: #c10151;
+  --crimson-500: #ca0464;
+  --crimson-300: #f0a8c6;
+  --crimson-200: #f8c8dc;
+  --crimson-100: #fcebf2;
+
+  /* ---- status ---- */
+  --green-600: #127a4b;
+  --amber-600: #8a5a04;
+  --red-600: #b3202c;
+  --blue-600: #1f5fd0;
+}
+
+:root {
+  /* Literal px. Display sizes come from the homepage hero. */
+  --size-micro: 11px;
+  --size-caption: 12px;
+  --size-meta: 13px;
+  --size-ui: 14px;
+  --size-body-sm: 15px;
+  --size-body: 17px;
+  --size-body-lg: 19px;
+  --size-h4: 20px;
+  --size-h3: 25px;
+  --size-h2: 32px;
+  --size-h1: 44px;
+  --size-display: 64px;
+  --size-display-lg: 96px;
+
+  --lh-solid: 1;
+  --lh-tight: 1.04;
+  --lh-snug: 1.22;
+  --lh-normal: 1.62;
+  --lh-loose: 1.78;
+
+  --track-display: -0.03em;
+  --track-tight: -0.015em;
+  --track-normal: 0em;
+  --track-wide: 0.02em;
+  --track-caps: 0.11em;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-black: 800;
+
+  /* the recurring eyebrow: bold caps, wide tracking, leading dot */
+  --label-size: 12px;
+  --label-weight: 700;
+  --label-track: 0.11em;
+}
+
+:root {
+  --space-0: 0px;
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 12px;
+  --space-6: 16px;
+  --space-7: 20px;
+  --space-8: 24px;
+  --space-9: 32px;
+  --space-10: 40px;
+  --space-11: 56px;
+  --space-12: 72px;
+  --space-13: 96px;
+  --space-14: 128px;
+  --space-15: 180px;
+
+  --gutter: 40px;
+  --gutter-tight: 20px;
+  --width-page: 1200px;
+  --width-wide: 1440px;
+  --width-narrow: 760px;
+  --measure-prose: 62ch;
+  --measure-abstract: 76ch;
+  --measure-caption: 56ch;
+}
+
+:root {
+  /* The homepage is rounded, not square: pills for nav, 10px for buttons,
+     24px for the large dark panels and media frames. */
+  --radius-0: 0px;
+  --radius-1: 4px;
+  --radius-2: 8px;
+  --radius-3: 10px;
+  --radius-4: 16px;
+  --radius-5: 24px;
+  --radius-pill: 999px;
+
+  --border-hair: 1px;
+  --border-rule: 2px;
+  --border-heavy: 4px;
+
+  /* Shadows are reserved for things that genuinely float: menus and dialogs. */
+  --shadow-none: none;
+  --shadow-menu: 0 4px 16px -6px rgba(27, 27, 29, 0.2), 0 0 0 1px rgba(27, 27, 29, 0.06);
+  --shadow-dialog: 0 24px 64px -24px rgba(27, 27, 29, 0.32), 0 0 0 1px rgba(27, 27, 29, 0.07);
+
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+}
+
+:root {
+  --dur-instant: 80ms;
+  --dur-fast: 130ms;
+  --dur-base: 200ms;
+  --dur-slow: 340ms;
+
+  --ease-out: cubic-bezier(0.2, 0.6, 0.25, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.5, 0, 1, 1);
+
+  --transition-ui: color var(--dur-fast) var(--ease-standard),
+    background-color var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-instant: 0ms;
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+  }
+}
+
+:root {
+  /* surfaces */
+  --surface-page: var(--paper-1);
+  --surface-card: var(--paper-0);
+  --surface-sunken: var(--paper-2);
+  --surface-code: var(--paper-2);
+  --surface-panel: var(--ink-0);
+  --surface-media: #000000;
+  --surface-accent: var(--crimson-600);
+  --surface-accent-soft: var(--crimson-100);
+  --surface-highlight: var(--crimson-200);
+
+  /* text */
+  --text-primary: var(--ink-0);
+  --text-body: var(--ink-2);
+  --text-secondary: var(--ink-2);
+  --text-muted: var(--ink-3);
+  --text-on-panel: #ffffff;
+  --text-on-panel-dim: #a9aaae;
+  --text-on-accent: #ffffff;
+  --text-accent: var(--crimson-500);
+  --text-accent-deep: var(--crimson-900);
+  --text-caption: var(--ink-2);
+
+  /* borders */
+  --border-hairline: var(--line-1);
+  --border-strong: var(--line-2);
+  --border-emphasis: var(--line-3);
+  --border-accent: var(--crimson-500);
+  --border-on-panel: #34343a;
+
+  /* interactive */
+  --link: var(--crimson-700);
+  --link-hover: var(--crimson-500);
+  --link-visited: var(--crimson-800);
+  --focus-ring: var(--crimson-500);
+  --action-primary-bg: var(--crimson-600);
+  --action-primary-bg-hover: var(--crimson-700);
+  --action-secondary-bg: var(--paper-0);
+  --action-secondary-border: var(--line-2);
+  --action-secondary-border-hover: var(--ink-0);
+  --action-disabled-fg: var(--ink-4);
+  --action-disabled-bg: var(--paper-2);
+  --nav-active-bg: var(--crimson-100);
+  --nav-active-fg: var(--crimson-600);
+
+  /* editorial */
+  --rule-section: var(--line-1);
+  --rule-hair: var(--line-1);
+  --label-fg: var(--crimson-500);
+  --badge-fg: var(--ink-0);
+  --badge-border: var(--line-2);
+  --tag-fg: var(--ink-2);
+  --tag-border: var(--line-2);
+}
+
+/* ---------------------------------------------------------------------------
+   base
+   ------------------------------------------------------------------------- */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  /* the sticky header is ~57px; keep anchored sections clear of it */
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--text-body);
+  font-family: var(--font-ui);
+  font-size: var(--size-body);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  margin: 0;
+  font-weight: var(--weight-bold);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--track-tight);
+}
+
+h1 {
+  font-size: var(--size-h1);
+  letter-spacing: var(--track-display);
+  line-height: var(--lh-tight);
+}
+h2 { font-size: var(--size-h2); }
+h3 { font-size: var(--size-h3); }
+h4 { font-size: var(--size-h4); }
+
+p { margin: 0; text-wrap: pretty; }
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--crimson-300);
+  transition: var(--transition-ui);
+
+  &:hover {
+    color: var(--link-hover);
+    border-bottom-color: var(--crimson-500);
+  }
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-1);
+}
+
+code,
+pre,
+kbd {
+  font-family: var(--font-code);
+  font-size: 0.9em;
+}
+
+::selection {
+  background: var(--crimson-200);
+  color: var(--ink-0);
+}

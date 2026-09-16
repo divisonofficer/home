@@ -1,27 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import {
-  Col,
-} from "react-bootstrap";
-
-const ExperienceCard = ({ data }) => {
-  return (
-    <Col lg="6">
-      <div className="pb-5 text-center">
-        <img className=" bg-white mb-3" src={data.companylogo} alt="" style={{
-          width: "20rem",
-          height: "10rem",
-          objectFit: "contain",
-        }} />
-        <p className="lead">
-          {data.role}
-          <br />
-          {data.date}
-        </p>
-
-      </div>
-    </Col>
-  );
-}
+const ExperienceCard = ({ data }) => (
+  <div className="ds-card">
+    <div className="ds-card__logo">
+      <img src={data.companylogo} alt={data.company || ""} />
+    </div>
+    <div>
+      <p className="ds-card__role">{data.role}</p>
+      <p className="ds-card__date">{data.date}</p>
+    </div>
+  </div>
+);
 
 export default ExperienceCard;

@@ -6,6 +6,7 @@ const navBar = {
 const publications = {
   show: true,
   heading: "Publications",
+  eyebrow: "Selected Work",
   data: [
     {
       title: "Snapshot Polarimetric Display Inverse Rendering",
@@ -85,18 +86,23 @@ const publications = {
 
 // Main Body SECTION
 const mainBody = {
-  gradientColors: "#2e4e3f, #003e74, #8dc73f, #ff6c0f",
   firstName: "Jinnyeong",
   middleName: "",
   lastName: "Kim",
+  // Sits above the headline as the crimson eyebrow.
+  eyebrow: "Ph.D. Student · Computational Imaging, POSTECH",
+  // Rendered in crimson as the second clause of the display headline.
+  tagline: "building vision systems for robotics.",
   message:
     "Ph.D. student in Computational Imaging at POSTECH, building vision systems for robotics.",
   icons: [
     {
+      label: "GitHub",
       image: "fa-github",
       url: "https://github.com/DivisonOfficer",
     },
     {
+      label: "LinkedIn",
       image: "fa-linkedin",
       url: "https://www.linkedin.com/in/kim-jinnyeong-a143b9247/",
     },
@@ -120,6 +126,7 @@ const mainBody = {
 const about = {
   show: true,
   heading: "About Me",
+  eyebrow: "About",
   imageLink: require("../editable-stuff/jinnyeong.jpeg"),
   imageSize: 375,
   message:
@@ -209,25 +216,33 @@ const getInTouch = {
   heading: "Get In Touch",
   message:
     "For research collaboration, academic opportunities, or invited talks, please contact me at",
-  email: "wlssud0701@naver.com",
+  emails: [
+    "wlssud0701@naver.com",
+    "wlssud0701@postech.ac.kr",
+    "wlssud0701@gmail.com",
+  ],
 };
 
 const experiences = {
   show: true,
   heading: "Research & Industry Experience",
+  eyebrow: "Industry",
   data: [
     {
       role: "Software Engineer Intern (Data Science), Samsung Electronics",
+      company: "Samsung Electronics",
       companylogo: require("../editable-stuff/samsung.png"),
-      date: "Jan 2024 - Feb 2024",
+      date: "Jan 2024 – Feb 2024",
     },
     {
       role: "Software Engineer Intern, Bear Robotics",
+      company: "Bear Robotics",
       companylogo: require("../editable-stuff/bearrobotics.jpeg"),
-      date: "Mar 2023 - Aug 2023",
+      date: "Mar 2023 – Aug 2023",
     },
     {
       role: "Android / iOS Native Engineer",
+      company: "Miner Inc.",
       companylogo: require("../editable-stuff/minerinc.png"),
       date: "May 2021 – Feb 2023",
     },
@@ -237,21 +252,22 @@ const experiences = {
 const education = {
   show: true,
   heading: "Education",
+  eyebrow: "Academic Record",
   data: [
     {
       title:
         "Ph.D. Integrated Program in Computer Science and Engineering, POSTECH",
-      subtitle: "2024-Present",
+      subtitle: "2024–Present",
       description: "Qualified Examination (QE) Passed, 2025",
     },
     {
       title: "B.S. in Software Engineering, Sungkyunkwan University",
-      subtitle: "2018-2024",
+      subtitle: "2018–2024",
       description: "Creative Scholarship (Full Tuition), 2023",
     },
     {
       title: "Military Service, Republic of Korea Air Force",
-      subtitle: "2019-2021",
+      subtitle: "2019–2021",
       description: "",
     },
   ],
@@ -335,6 +351,7 @@ const teachingExperience = {
 const achievements = {
   show: true,
   heading: "Honors and Fellowships",
+  eyebrow: "Recognition",
   data: [
     {
       title: "Outstanding Doctoral Research Fellowship",
@@ -358,7 +375,7 @@ const achievements = {
     },
     {
       title: "Advanced to Onsite Selection Round",
-      subtitle: "2021-2023",
+      subtitle: "2021–2023",
       description: "ICPC Korea Regional Contest",
     },
     {

@@ -22,101 +22,118 @@ import Project from "./components/home/Project";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Skills from "./components/home/Skills";
-// import { Blog } from "./components/blog/Blog";
-// import BlogPost from "./components/blog/BlogPost";
 import GetInTouch from "./components/home/GetInTouch.jsx";
 import Leadership from "./components/home/Leadership.jsx";
-
 import Experience from "./components/home/Experience";
 import Achievements from "./components/home/Achievements.jsx";
+import AcademicRecord from "./components/home/AcademicRecord.jsx";
 import Publications from "./components/home/PublicationCard.jsx";
 
-const Home = React.forwardRef((props, ref) => {
-  return (
-    <>
-      <MainBody
-        gradient={mainBody.gradientColors}
-        title={`${mainBody.firstName} ${mainBody.middleName} ${mainBody.lastName}`}
-        message={mainBody.message}
-        icons={mainBody.icons}
-        ref={ref}
+// Presentations, teaching and service are one three-column record rather than
+// three full-width sections.
+const recordColumns = [
+  conferencePresentations,
+  { ...teachingExperience, combineMeta: true },
+  { ...academicService, combineMeta: true },
+].filter((column) => column.show);
+
+const Home = () => (
+  <main className="ds-main">
+    <MainBody
+      eyebrow={mainBody.eyebrow}
+      name={`${mainBody.firstName} ${mainBody.middleName} ${mainBody.lastName}`
+        .replace(/\s+/g, " ")
+        .trim()}
+      tagline={mainBody.tagline}
+      message={mainBody.message}
+      icons={mainBody.icons}
+      portrait={about.imageLink}
+      portraitAlt={`${mainBody.firstName} ${mainBody.lastName}`}
+    />
+
+    {about.show && (
+      <AboutMe
+        heading={about.heading}
+        eyebrow={about.eyebrow}
+        message={about.message}
+        resume={about.resume}
       />
-      {about.show && (
-        <AboutMe
-          heading={about.heading}
-          message={about.message}
-          link={about.imageLink}
-          imgSize={about.imageSize}
-          resume={about.resume}
-        />
-      )}
-      {publications.show && (
-        <Publications
-          heading={publications.heading}
-          publications={publications.data}
-        />
-      )}
-      {education.show && (
-        <Achievements sectionId="education" achievements={education} />
-      )}
-      {conferencePresentations.show && (
-        <Achievements achievements={conferencePresentations} />
-      )}
-      {academicService.show && <Achievements achievements={academicService} />}
-      {teachingExperience.show && (
-        <Achievements achievements={teachingExperience} />
-      )}
-      {experiences.show && <Experience experiences={experiences} />}
-      {achievements.show && <Achievements achievements={achievements} />}
-      {repos.show && (
-        <Project
-          heading={repos.heading}
-          username={repos.gitHubUsername}
-          length={repos.reposLength}
-          specfic={repos.specificRepos}
-        />
-      )}
-      {leadership.show && (
-        <Leadership
-          heading={leadership.heading}
-          message={leadership.message}
-          img={leadership.images}
-          imageSize={leadership.imageSize}
-        />
-      )}
-      {skills.show && (
-        <Skills
-          heading={skills.heading}
-          hardSkills={skills.hardSkills}
-          softSkills={skills.softSkills}
-        />
-      )}
-    </>
-  );
-});
+    )}
 
-const App = () => {
-  const titleRef = React.useRef();
+    {publications.show && (
+      <Publications
+        heading={publications.heading}
+        eyebrow={publications.eyebrow}
+        publications={publications.data}
+      />
+    )}
 
-  return (
-    <BrowserRouter basename={process.env.PUBLIC_URL + "/"}>
-      {navBar.show && <Navbar ref={titleRef} />}
+    {education.show && (
+      <Achievements
+        sectionId="education"
+        achievements={education}
+        variant="timeline"
+      />
+    )}
+
+    {experiences.show && <Experience experiences={experiences} />}
+
+    {recordColumns.length > 0 && (
+      <AcademicRecord
+        eyebrow="Academic Record"
+        heading="Presentations, Service & Teaching"
+        columns={recordColumns}
+      />
+    )}
+
+    {achievements.show && <Achievements achievements={achievements} />}
+
+    {repos.show && (
+      <Project
+        heading={repos.heading}
+        username={repos.gitHubUsername}
+        length={repos.reposLength}
+        specfic={repos.specificRepos}
+      />
+    )}
+
+    {leadership.show && (
+      <Leadership
+        heading={leadership.heading}
+        message={leadership.message}
+        img={leadership.images}
+        imageSize={leadership.imageSize}
+      />
+    )}
+
+    {skills.show && (
+      <Skills
+        heading={skills.heading}
+        hardSkills={skills.hardSkills}
+        softSkills={skills.softSkills}
+      />
+    )}
+
+    {getInTouch.show && (
+      <GetInTouch
+        heading={getInTouch.heading}
+        message={getInTouch.message}
+        emails={getInTouch.emails}
+      />
+    )}
+  </main>
+);
+
+const App = () => (
+  <BrowserRouter basename={process.env.PUBLIC_URL + "/"}>
+    <div className="ds-shell">
+      {navBar.show && <Navbar />}
       <Routes>
-        <Route path="/" exact element={<Home ref={titleRef} />} />
+        <Route path="/" exact element={<Home />} />
       </Routes>
-      {/* {false && <Route path="/blog" exact component={Blog} />}
-      {false && <Route path="/blog/:id" component={BlogPost} />} */}
-      <Footer>
-        {getInTouch.show && (
-          <GetInTouch
-            heading={getInTouch.heading}
-            message={getInTouch.message}
-            email={getInTouch.email}
-          />
-        )}
-      </Footer>
-    </BrowserRouter>
-  );
-};
+      <Footer />
+    </div>
+  </BrowserRouter>
+);
 
 export default App;

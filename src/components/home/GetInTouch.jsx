@@ -1,14 +1,21 @@
 import React from "react";
+import { Eyebrow, Button } from "../design/DesignSystem";
 
-const GetInTouch = ({ heading, message, email }) => {
-  return (
-    <>
-      <h2 className="display-4 pb-3 text-center">{heading}</h2>
-      <p className="lead text-center pb-3">
-        {message}, <a className="text-decoration-none" href={`mailto:${email}`}>{email}</a>.
-      </p>
-    </>
-  );
-};
+// The one dark panel on the page — it closes the document.
+const GetInTouch = ({ heading, message, emails }) => (
+  <section id="contact" className="ds-section">
+    <div className="ds-panel">
+      <Eyebrow variant="onPanel">{heading}</Eyebrow>
+      <p className="ds-panel__message">{message}</p>
+      <div className="ds-panel__actions">
+        {emails.map((email) => (
+          <Button key={email} href={`mailto:${email}`} variant="onPanel">
+            {email}
+          </Button>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
 export default GetInTouch;
