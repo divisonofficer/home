@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Jinnyeong Kim — Curriculum Vitae</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* Pretendard Variable — same face as the site's display type. */
+@font-face{
+  font-family:"Pretendard Variable";
+  font-style:normal;
+  font-weight:45 920;
+  font-display:block;
+  src:url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2") format("woff2-variations");
+}
+
+/* Tokens carried over from src/scss/_tokens.scss. The page ground is white
+   rather than the site's warm paper — a full-bleed tint prints badly. */
+:root{
+  --font-sans:"Pretendard Variable",Pretendard,"Noto Sans KR",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+
+  --ink-0:#1B1B1D;
+  --ink-2:#5F6065;
+  --ink-3:#8E8F94;
+  --line-1:#E4E2DF;
+  --line-2:#C9C6C2;
+  --crimson-500:#CA0464;
+  --crimson-700:#A00350;
+
+  --track-display:-0.03em;
+  --track-tight:-0.015em;
+  --track-caps:0.11em;
+}
+
+@page{
+  size:A4;
+  margin:14mm 15mm 13mm;
+}
+
+*{box-sizing:border-box;}
+
+html,body{
+  margin:0;
+  padding:0;
+  background:#FFFFFF;
+}
+
+body{
+  font-family:var(--font-sans);
+  font-size:9.4pt;
+  line-height:1.5;
+  color:var(--ink-2);
+  -webkit-font-smoothing:antialiased;
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+}
+
+a{color:var(--crimson-700);text-decoration:none;}
+
+/* ---- header ---- */
+
+.head{
+  padding-bottom:9pt;
+  border-bottom:1.6pt solid var(--ink-0);
+  margin-bottom:13pt;
+}
+
+.head__name{
+  margin:0;
+  font-size:25pt;
+  font-weight:800;
+  letter-spacing:var(--track-display);
+  line-height:1.02;
+  color:var(--ink-0);
+}
+
+.head__role{
+  margin:4pt 0 0;
+  font-size:10.5pt;
+  font-weight:500;
+  letter-spacing:var(--track-tight);
+  color:var(--crimson-500);
+}
+
+.head__contact{
+  margin:7pt 0 0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:3pt 12pt;
+  font-family:var(--font-mono);
+  font-size:8.1pt;
+  color:var(--ink-2);
+}
+
+.head__contact a,
+.head__contact span{white-space:nowrap;color:inherit;}
+
+/* ---- sections ---- */
+
+.section{
+  margin-bottom:9.5pt;
+  break-inside:auto;
+}
+
+.section__label{
+  display:flex;
+  align-items:center;
+  gap:5pt;
+  margin:0 0 6pt;
+  font-size:7.8pt;
+  font-weight:700;
+  letter-spacing:var(--track-caps);
+  text-transform:uppercase;
+  color:var(--crimson-500);
+}
+
+.section__label::before{
+  content:"";
+  width:4pt;
+  height:4pt;
+  border-radius:50%;
+  background:currentColor;
+  flex:none;
+}
+
+.section__label::after{
+  content:"";
+  flex:1;
+  height:0;
+  border-top:0.6pt solid var(--line-1);
+}
+
+/* ---- two-column rows: mono period on the left, detail on the right ---- */
+
+.row{
+  display:grid;
+  grid-template-columns:62pt 1fr;
+  gap:10pt;
+  padding:3pt 0;
+  break-inside:avoid;
+}
+
+.row + .row{border-top:0.6pt solid var(--line-1);}
+
+.row__when{
+  font-family:var(--font-mono);
+  font-size:8.1pt;
+  font-weight:500;
+  color:var(--crimson-500);
+  padding-top:0.6pt;
+}
+
+.row__title{
+  margin:0;
+  font-size:9.8pt;
+  font-weight:700;
+  letter-spacing:var(--track-tight);
+  color:var(--ink-0);
+}
+
+.row__note{
+  margin:1pt 0 0;
+  font-size:8.8pt;
+  color:var(--ink-3);
+}
+
+.row__sub{
+  margin:1pt 0 0;
+  font-size:8.8pt;
+  color:var(--ink-2);
+}
+
+/* ---- publications ---- */
+
+.pub{
+  display:grid;
+  grid-template-columns:19pt 1fr;
+  gap:5pt;
+  padding:4.2pt 0;
+  break-inside:avoid;
+}
+
+.pub + .pub{border-top:0.6pt solid var(--line-1);}
+
+.pub__num{
+  font-family:var(--font-mono);
+  font-size:8.1pt;
+  font-weight:600;
+  color:var(--ink-3);
+  padding-top:1pt;
+}
+
+.pub__title{
+  margin:0;
+  font-size:9.8pt;
+  font-weight:700;
+  letter-spacing:var(--track-tight);
+  color:var(--ink-0);
+}
+
+.pub__authors{
+  margin:1.4pt 0 0;
+  font-size:8.8pt;
+  color:var(--ink-2);
+}
+
+.pub__authors b{color:var(--ink-0);font-weight:700;}
+.pub__authors sup{color:var(--crimson-500);}
+
+.pub__venue{
+  margin:1.4pt 0 0;
+  font-family:var(--font-mono);
+  font-size:8.1pt;
+  font-weight:500;
+  color:var(--crimson-500);
+}
+
+/* official / preprint / project links — one quiet mono line under the venue */
+.pub__links{
+  margin:1pt 0 0;
+  font-family:var(--font-mono);
+  font-size:7.6pt;
+  color:var(--ink-3);
+}
+
+.pub__links a{color:var(--ink-2);}
+.pub__links .sep{color:var(--line-2);margin:0 1pt;}
+
+/* <=200-character summary, set off by a hairline so it never reads as authors */
+.pub__summary{
+  margin:3pt 0 0;
+  padding-left:6pt;
+  border-left:1.2pt solid var(--line-1);
+  font-size:8.4pt;
+  line-height:1.42;
+  color:var(--ink-2);
+}
+
+.pub__footnote{
+  margin:4pt 0 0;
+  font-size:8.2pt;
+  color:var(--ink-3);
+}
+
+/* "Under review" vs "Peer-reviewed" groups inside Publications */
+.section__sub{
+  margin:9pt 0 1pt;
+  font-size:7.2pt;
+  font-weight:700;
+  letter-spacing:var(--track-caps);
+  text-transform:uppercase;
+  color:var(--ink-3);
+}
+
+.section__sub:first-of-type{margin-top:0;}
+
+/* keep headings with the first entry beneath them across page breaks */
+.section__label,
+.section__sub{break-after:avoid;}
+
+.foot{
+  margin-top:6pt;
+  padding-top:6pt;
+  border-top:0.6pt solid var(--line-1);
+  font-family:var(--font-mono);
+  font-size:7.4pt;
+  color:var(--ink-3);
+  display:flex;
+  justify-content:space-between;
+}
+</style>
+</head>
+<body>
+
+<header class="head">
+  <h1 class="head__name">Jinnyeong Kim</h1>
+  <p class="head__role">Ph.D. Student · Computational Imaging, POSTECH</p>
+  <div class="head__contact">
+    <a href="mailto:wlssud0701@postech.ac.kr">wlssud0701@postech.ac.kr</a>
+    <a href="mailto:wlssud0701@gmail.com">wlssud0701@gmail.com</a>
+    <a href="https://divisonofficer.github.io">divisonofficer.github.io</a>
+    <a href="https://github.com/DivisonOfficer">github.com/DivisonOfficer</a>
+    <a href="https://scholar.google.com/citations?user=dBUnQZwAAAAJ">Google Scholar</a>
+  </div>
+</header>
+
+<section class="section">
+  <h2 class="section__label">Research Interests</h2>
+  <p style="margin:0;">
+    Computational imaging and computational cameras; RGB-NIR fusion; stereo
+    vision; HDR imaging; inverse rendering; vision systems for robotics.
+  </p>
+</section>
+
+<section class="section">
+  <h2 class="section__label">Education</h2>
+
+  <div class="row">
+    <span class="row__when">2024–Present</span>
+    <div>
+      <p class="row__title">Ph.D. Integrated Program, Computer Science and Engineering</p>
+      <p class="row__sub">POSTECH, Pohang, Republic of Korea</p>
+      <p class="row__note">Qualified Examination (QE) passed, 2025</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">2018–2024</span>
+    <div>
+      <p class="row__title">B.S. in Software Engineering</p>
+      <p class="row__sub">Sungkyunkwan University, Republic of Korea</p>
+      <p class="row__note">Creative Scholarship (Full Tuition), 2023</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">2019–2021</span>
+    <div>
+      <p class="row__title">Military Service, Republic of Korea Air Force</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section__label">Publications</h2>
+
+  <p class="section__sub">Published</p>
+
+  <div class="pub">
+    <span class="pub__num">[1]</span>
+    <div>
+      <p class="pub__title">Snapshot Polarimetric Display Inverse Rendering</p>
+      <p class="pub__authors">Seokjun Choi<sup>*</sup>, Yunseong Moon<sup>*</sup>, Kaizhang Kang, Hoon-Gyu Chung, <b>Jinnyeong Kim</b>, Giljoo Nam, Seung-Hwan Baek</p>
+      <p class="pub__venue">ACM SIGGRAPH Asia 2026 · ACM Transactions on Graphics</p>
+      <p class="pub__links"><a href="https://arxiv.org/abs/2605.24915">arXiv:2605.24915</a></p>
+      <p class="pub__summary">Single-shot inverse rendering with a polarized LCD pattern and an RGB polarization camera; a transformer predicts per-pixel normal, albedo, roughness and metallicity.</p>
+    </div>
+  </div>
+
+  <div class="pub">
+    <span class="pub__num">[2]</span>
+    <div>
+      <p class="pub__title">Depth-guided Multi-view Exposure Bracketing for HDR Robot Vision</p>
+      <p class="pub__authors"><b>Jinnyeong Kim</b>, Juhyung Choi, Woohyeok Kim, Sunghyun Cho, Seung-Hwan Baek</p>
+      <p class="pub__venue">ECCV 2026</p>
+      <p class="pub__links"><a href="https://arxiv.org/abs/2608.16014">arXiv:2608.16014</a> <span class="sep">·</span> <a href="https://divisonofficer.github.io/dmeb/">Project page</a></p>
+      <p class="pub__summary">Single-shot HDR for robots: synchronized cameras take different exposures, fused with depth- and confidence-guided weighting. Includes 121 real scenes and 20 synthetic sequences.</p>
+    </div>
+  </div>
+
+  <div class="pub">
+    <span class="pub__num">[3]</span>
+    <div>
+      <p class="pub__title">Ambient-robust Inverse Rendering using Active RGB-NIR Imaging</p>
+      <p class="pub__authors">Hoon-Gyu Chung<sup>*</sup>, <b>Jinnyeong Kim</b><sup>*</sup>, Hyunwoo Kang, Seung-Hwan Baek</p>
+      <p class="pub__venue">ACM SIGGRAPH 2026 · Conference Papers</p>
+      <p class="pub__links"><a href="https://doi.org/10.1145/3799902.3811078">doi:10.1145/3799902.3811078</a> <span class="sep">·</span> <a href="https://arxiv.org/abs/2605.30250">arXiv:2605.30250</a> <span class="sep">·</span> <a href="https://divisonofficer.github.io/Ambient-robust-Inverse-Rendering-using-Active-RGB-NIR-Imaging/">Project page</a></p>
+      <p class="pub__summary">Inverse rendering that holds up under changing ambient light by pairing RGB images with an invisible NIR flash, with a mobile RGB-NIR capture system and a new multi-view dataset.</p>
+    </div>
+  </div>
+
+  <div class="pub">
+    <span class="pub__num">[4]</span>
+    <div>
+      <p class="pub__title">Pixel-aligned RGB-NIR Stereo Imaging and Dataset for Robot Vision</p>
+      <p class="pub__authors"><b>Jinnyeong Kim</b>, Seung-Hwan Baek</p>
+      <p class="pub__venue">CVPR 2025</p>
+      <p class="pub__links"><a href="https://openaccess.thecvf.com/content/CVPR2025/html/Kim_Pixel-aligned_RGB-NIR_Stereo_Imaging_and_Dataset_for_Robot_Vision_CVPR_2025_paper.html">CVF Open Access</a> <span class="sep">·</span> <a href="https://arxiv.org/abs/2411.18025">arXiv:2411.18025</a> <span class="sep">·</span> <a href="https://divisonofficer.github.io/project_page_cvpr2025_5308">Project page</a></p>
+      <p class="pub__summary">A mobile robot with two pixel-aligned RGB-NIR stereo cameras and LiDAR, a dataset across diverse lighting, and two fusion methods that let RGB-pretrained models use NIR.</p>
+    </div>
+  </div>
+
+  <div class="pub">
+    <span class="pub__num">[5]</span>
+    <div>
+      <p class="pub__title">Dual Exposure Stereo for Extended Dynamic Range 3D Imaging</p>
+      <p class="pub__authors">Juhyung Choi, <b>Jinnyeong Kim</b>, Seokjun Choi, Jinwoo Lee, Samuel Brucker, Mario Bijelic, Felix Heide, Seung-Hwan Baek</p>
+      <p class="pub__venue">CVPR 2025</p>
+      <p class="pub__links"><a href="https://openaccess.thecvf.com/content/CVPR2025/html/Choi_Dual_Exposure_Stereo_for_Extended_Dynamic_Range_3D_Imaging_CVPR_2025_paper.html">CVF Open Access</a> <span class="sep">·</span> <a href="https://arxiv.org/abs/2412.02351">arXiv:2412.02351</a> <span class="sep">·</span> <a href="https://light.princeton.edu/publication/dual-exposure-stereo">Project page</a></p>
+      <p class="pub__summary">Stereo depth beyond the camera's dynamic range: automatically controlled alternating dual exposures and a motion-aware dual-exposure stereo network, tested on real and synthetic data.</p>
+    </div>
+  </div>
+
+  <p class="section__sub">Under Review</p>
+
+  <div class="pub">
+    <span class="pub__num">[U1]</span>
+    <div>
+      <p class="pub__title">Taming VLAs under Robot Execution Errors: Self-Compensation and Stress Testing</p>
+      <p class="pub__authors">Sohyun Lee, Yoonjae Baek, Jaesang Won, <b>Jinnyeong Kim</b>, Hyunwoo Kang, Seung-Hwan Baek, Ivan Laptev, Suha Kwak</p>
+      <p class="pub__venue">Under review at ICLR 2027</p>
+      <p class="pub__links"><a href="https://arxiv.org/abs/2609.37334">arXiv:2609.37334</a></p>
+      <p class="pub__summary">Deployment-time adaptation that pre-compensates VLA policies for robot execution errors from commanded vs. executed motion, without task rewards; plus RoboStress, a 7-scenario benchmark.</p>
+    </div>
+  </div>
+
+  <p class="pub__footnote"><sup>*</sup> Equal contribution.</p>
+</section>
+
+<section class="section">
+  <h2 class="section__label">Conference Presentations</h2>
+
+  <div class="row">
+    <span class="row__when">2026</span>
+    <div>
+      <p class="row__title">Poster Presentation — ECCV 2026 Main Conference</p>
+      <p class="row__note">Depth-guided Multi-view Exposure Bracketing for HDR Robot Vision</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">2026</span>
+    <div>
+      <p class="row__title">Poster Presentation — MUSTCV 2026</p>
+      <p class="row__note">The 5th Workshop on Computer Vision for Multimedia Spatial Intelligence through Time — Depth-guided Multi-view Exposure Bracketing for HDR Robot Vision</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">2026</span>
+    <div>
+      <p class="row__title">Paper Presentation — ACM SIGGRAPH 2026</p>
+      <p class="row__note">Ambient-robust Inverse Rendering using Active RGB-NIR Imaging</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">2026</span>
+    <div>
+      <p class="row__title">Oral Presentation — SIGGRAPH 2026 Graphics4Science (3-Minute Talk)</p>
+      <p class="row__note">July 20, 9:00 AM, Room 406AB — Ambient-robust Inverse Rendering using Active RGB-NIR Imaging</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">2025</span>
+    <div>
+      <p class="row__title">Live Demonstration — CVPR 2025</p>
+      <p class="row__note">Pixel-aligned RGB-NIR Stereo Imaging and Dataset</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">2025</span>
+    <div>
+      <p class="row__title">Poster Presentation — CVPR 2025 Workshop</p>
+      <p class="row__note">Computational Cameras and Displays</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section__label">Research &amp; Industry Experience</h2>
+
+  <div class="row">
+    <span class="row__when">2024.01–02</span>
+    <div>
+      <p class="row__title">Software Engineer Intern, Data Science</p>
+      <p class="row__sub">Samsung Electronics</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">2023.03–08</span>
+    <div>
+      <p class="row__title">Software Engineer Intern</p>
+      <p class="row__sub">Bear Robotics</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">2021.05–<br>2023.02</span>
+    <div>
+      <p class="row__title">Android / iOS Native Engineer</p>
+      <p class="row__sub">Miner Inc.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section__label">Teaching Experience</h2>
+
+  <div class="row">
+    <span class="row__when">Fall 2025</span>
+    <div>
+      <p class="row__title">Computational Imaging — Teaching Assistant</p>
+      <p class="row__sub">POSTECH</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">Spring 2025</span>
+    <div>
+      <p class="row__title">Data Structures — Teaching Assistant</p>
+      <p class="row__sub">POSTECH</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">Fall 2023</span>
+    <div>
+      <p class="row__title">Introduction to Computer Networks — Teaching Assistant</p>
+      <p class="row__sub">Sungkyunkwan University</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section__label">Academic Service</h2>
+
+  <div class="row">
+    <span class="row__when">2026</span>
+    <div>
+      <p class="row__title">Reviewer — ACM SIGGRAPH</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section__label">Honors and Fellowships</h2>
+
+  <div class="row">
+    <span class="row__when">2026</span>
+    <div>
+      <p class="row__title">Outstanding Doctoral Research Fellowship</p>
+      <p class="row__note">National Research Foundation of Korea (NRF)</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">2026</span>
+    <div>
+      <p class="row__title">Doctoral Fellowship for Outstanding Students</p>
+      <p class="row__note">Korea Student Aid Foundation (KOSAF)</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">2023</span>
+    <div>
+      <p class="row__title">Creative Scholarship (Full Tuition)</p>
+      <p class="row__note">Sungkyunkwan University</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">2022</span>
+    <div>
+      <p class="row__title">Samsung Software Certificate Pro</p>
+      <p class="row__note">Samsung</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">2021–2023</span>
+    <div>
+      <p class="row__title">Advanced to Onsite Selection Round, ICPC Korea Regional Contest</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="row__when">2018</span>
+    <div>
+      <p class="row__title">Special Award, ICPC Korea Regional Contest</p>
+      <p class="row__note">Onsite Selection Round</p>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  <span>Jinnyeong Kim · Curriculum Vitae</span>
+  <span id="updated"></span>
+</div>
+
+<script>
+  // Stamped at render time so the PDF always carries its own build date.
+  document.getElementById("updated").textContent =
+    "Updated " + new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" });
+</script>
+
+</body>
+</html>
