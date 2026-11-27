@@ -9,21 +9,6 @@ const publications = {
   eyebrow: "Selected Work",
   data: [
     {
-      title: "Snapshot Polarimetric Display Inverse Rendering",
-      authors: [
-        "Seokjun Choi*",
-        "Yunseong Moon*",
-        "Kaizhang Kang",
-        "Hoon-Gyu Chung",
-        "Jin-Nyeong Kim",
-        "Giljoo Nam",
-        "Seung-Hwan Baek",
-      ],
-      year: "SIGGRAPH Asia 2026 (Transactions on Graphics)",
-      thumbnail:
-        "https://lh3.googleusercontent.com/sitesv/AG8ngQVAoJxd4lSGzDtTZmMhzjZvcJk-U-FLQdL5tdgU9Tilj6dZgay83KMBdPlosHPAY03wYUM6bkus618_SEiVAfO5eaTqeUA9juCZBJ7pALFe20w4h-oxMQIuQo58Hua09WgVEmaVl7tSjyRolCaeKBprRFpdvKfOl6z9Xxy2bkNXcZTTmPMit6csD1R0TwoOPoElF5PaAgQV6DhVciw84Ca3BVlu3hif2VXR=w1280",
-    },
-    {
       title:
         "Depth-guided Multi-view Exposure Bracketing for HDR Robot Vision",
       authors: [
@@ -63,6 +48,21 @@ const publications = {
       // github :
       // supple
       // video
+    },
+    {
+      title: "Snapshot Polarimetric Display Inverse Rendering",
+      authors: [
+        "Seokjun Choi*",
+        "Yunseong Moon*",
+        "Kaizhang Kang",
+        "Hoon-Gyu Chung",
+        "Jin-Nyeong Kim",
+        "Giljoo Nam",
+        "Seung-Hwan Baek",
+      ],
+      year: "SIGGRAPH Asia 2026 (Transactions on Graphics)",
+      thumbnail:
+        "https://lh3.googleusercontent.com/sitesv/AG8ngQVAoJxd4lSGzDtTZmMhzjZvcJk-U-FLQdL5tdgU9Tilj6dZgay83KMBdPlosHPAY03wYUM6bkus618_SEiVAfO5eaTqeUA9juCZBJ7pALFe20w4h-oxMQIuQo58Hua09WgVEmaVl7tSjyRolCaeKBprRFpdvKfOl6z9Xxy2bkNXcZTTmPMit6csD1R0TwoOPoElF5PaAgQV6DhVciw84Ca3BVlu3hif2VXR=w1280",
     },
     {
       title: "Dual Exposure Stereo for Extended Dynamic Range 3D Imaging",
